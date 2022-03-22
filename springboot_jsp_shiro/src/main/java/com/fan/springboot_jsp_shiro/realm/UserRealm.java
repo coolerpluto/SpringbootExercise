@@ -1,30 +1,22 @@
-package com.fan.MyRealm;
+package com.fan.springboot_jsp_shiro.realm;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-public class CustomerRealm extends AuthorizingRealm {
-
-    //授权
+public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        System.out.println("进入授权方法");
         return null;
     }
 
-    //认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String principal = (String) authenticationToken.getPrincipal();
-        System.out.println(principal);
-        if("fan".equals(principal)){
-            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(principal,"123",this.getName());
-            return simpleAuthenticationInfo;
-        }
+        System.out.println("进入认证方法");
         return null;
     }
 }
