@@ -9,11 +9,11 @@
     <title>Document</title>
 </head>
 <body>
-登录页面
-<form action="${pageContext.request.contextPath}/user/login">
+注册页面
+<form action="${pageContext.request.contextPath}/user/register">
     用户名：<input type="text" name="userName"><br>
     密码：<input type="text" name="password"><br>
-    <input type="submit" value="提交">
+    <input type="submit" value="注册注册">
 </form>
 </body>
 </html>

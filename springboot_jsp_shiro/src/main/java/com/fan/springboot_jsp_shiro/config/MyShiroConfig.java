@@ -14,13 +14,21 @@ import java.util.Map;
 @Configuration
 public class MyShiroConfig {
 
-    //配置shiro拦截器
+    //配置shiro拦截器，负责拦截请求请求
     @Bean
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         Map<String,String> map = new HashMap<>();
-        map.put("/index.jsp", "authc");
+
+        //设置公共资源请求，匿名访问，不需要认证授权的，通过anon
+        map.put("/user/login", "anon");
+        map.put("/register.jsp","anon");
+        map.put("/user/register","anon");
+
+        //设置受限资源，所有请求都设为受限资源，authc代表受限资源
+        map.put("/**", "authc");
+
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }

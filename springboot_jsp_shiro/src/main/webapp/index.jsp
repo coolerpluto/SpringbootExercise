@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/user/logout">退出</a>
 首页页面
 </body>
 </html>
