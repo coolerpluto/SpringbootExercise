@@ -1,6 +1,8 @@
 package com.fan.springboot_jsp_shiro.config;
 
 import com.fan.springboot_jsp_shiro.realm.UserRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -25,6 +27,7 @@ public class MyShiroConfig {
         map.put("/user/login", "anon");
         map.put("/register.jsp","anon");
         map.put("/user/register","anon");
+        map.put("/user/user","anon");
 
         //设置受限资源，所有请求都设为受限资源，authc代表受限资源
         map.put("/**", "authc");
@@ -45,6 +48,17 @@ public class MyShiroConfig {
     @Bean
     public Realm getRealm(){
         UserRealm userRealm = new UserRealm();
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+        matcher.setHashAlgorithmName("MD5");
+        matcher.setHashIterations(1024);
+        userRealm.setCredentialsMatcher(matcher);
+
+
+        //开启缓存管理
+        userRealm.setCachingEnabled(true);//开启全局缓存
+        userRealm.setAuthenticationCachingEnabled(true);//开启认证缓存
+        userRealm.setAuthorizationCachingEnabled(true);//开启授权缓存
+        userRealm.setCacheManager(new EhCacheManager());
         return userRealm;
     }
 }

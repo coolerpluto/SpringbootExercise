@@ -1,4 +1,5 @@
 <%@page contentType="text/html; utf-8" pageEncoding="utf-8" isELIgnored="false" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,5 +12,19 @@
 <body>
 <a href="${pageContext.request.contextPath}/user/logout">退出</a>
 首页页面
+
+<shiro:hasRole name="admin">
+    <li><a href="">用户管理</a> </li>
+</shiro:hasRole>
+
+
+<shiro:hasAnyRoles name="admin,user">
+<li><a href="">商品管理</a> </li>
+<li><a href="">订单管理</a> </li>
+<li><a href="">物流管理</a> </li>
+</shiro:hasAnyRoles>
+<shiro:hasRole name="anno">
+<li><a href="">匿名管理</a> </li>
+</shiro:hasRole>
 </body>
 </html>

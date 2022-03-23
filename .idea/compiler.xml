@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="shiro01" />
+        <module name="javademo" />
         <module name="springboot_jsp_shiro" />
+        <module name="shiro01" />
       </profile>
     </annotationProcessing>
   </component>

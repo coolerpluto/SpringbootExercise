@@ -7,5 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserDao {
     void insert(User user);
+
+    User getUserByName(String userName);
+
+    User getUserRoles(String userName);
 }
 

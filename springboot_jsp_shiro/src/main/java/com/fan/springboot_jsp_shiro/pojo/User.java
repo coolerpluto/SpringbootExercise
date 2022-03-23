@@ -5,13 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 @Data
-@Accessors(chain = true)
-@NoArgsConstructor
-@AllArgsConstructor
 public class User {
     private String id;
     private String userName;
     private String password;
     private String salt;
+    private List<Role> roles;
 }
